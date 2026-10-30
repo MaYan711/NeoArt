@@ -1,0 +1,75 @@
+<section #scene id="colecciones-motion" class="sg-section" aria-labelledby="sg-heading">
+  <div class="sg-intro mx-auto max-w-6xl px-6 pt-24 pb-12 text-center sm:pt-32">
+    <p class="sg-eyebrow">NEOART / COLECCIONES</p>
+    <h2 id="sg-heading" class="sg-intro-title">Tres estilos.<br><span>Una sola esencia.</span></h2>
+    <p class="sg-intro-copy">No solo elijas una imagen. Elige lo que quieres sentir cada vez que enciendas tu espacio.</p>
+  </div>
+
+  <div #track class="sg-track">
+    <div class="sg-grid" aria-hidden="true"></div>
+    <div class="sg-track-inner">
+      <article data-gallery-slide class="sg-slide sg-slide-auto" aria-labelledby="sg-auto-title">
+        <div class="sg-copy">
+          <p class="sg-counter">01 / AUTOMOTRIZ</p>
+          <h3 id="sg-auto-title">Tu pasión.<br><span>En otra dimensión.</span></h3>
+          <p>Un diseño que captura la energía de los motores con la profundidad de la resina y una iluminación que destaca.</p>
+          <a href="#catalogo" class="sg-action">Explorar colección <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="sg-stage" (pointermove)="moveTilt($event)" (pointerleave)="resetTilt($event)">
+          <div class="sg-orbit" aria-hidden="true"></div>
+          <div data-gallery-art class="sg-art sg-auto-art" role="img" aria-label="Ilustracion conceptual de cuadro NeoArt automotriz">
+            <span class="sg-art-top">NEOART / AUTO SERIES</span>
+            <div class="sg-visual sg-visual-auto" aria-hidden="true">
+              <div class="sg-speedline"></div><div class="sg-speedline"></div><div class="sg-speedline"></div>
+              <span>GT</span>
+            </div>
+            <span class="sg-art-bottom">DRIVE YOUR PASSION</span>
+          </div>
+        </div>
+      </article>
+
+      <article data-gallery-slide class="sg-slide sg-slide-music" aria-labelledby="sg-music-title">
+        <div class="sg-copy">
+          <p class="sg-counter">02 / MUSICA</p>
+          <h3 id="sg-music-title">Lo que escuchas.<br><span>También se siente.</span></h3>
+          <p>Ritmo, personalidad y luz. Una pieza inspirada en aquello que siempre quieres tener cerca.</p>
+          <a href="#catalogo" class="sg-action">Descubrir diseños <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="sg-stage" (pointermove)="moveTilt($event)" (pointerleave)="resetTilt($event)">
+          <div class="sg-orbit" aria-hidden="true"></div>
+          <div data-gallery-art class="sg-art sg-music-art" role="img" aria-label="Ilustracion conceptual de cuadro NeoArt inspirado en musica">
+            <span class="sg-art-top">NEOART / SOUND SERIES</span>
+            <div class="sg-visual sg-visual-music" aria-hidden="true">
+              <div class="sg-sound-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <span>SOUND</span>
+            </div>
+            <span class="sg-art-bottom">MAKE IT LOUD</span>
+          </div>
+        </div>
+      </article>
+
+      <article data-gallery-slide class="sg-slide sg-slide-custom" aria-labelledby="sg-custom-title">
+        <div class="sg-copy">
+          <p class="sg-counter">03 / PERSONALIZADOS</p>
+          <h3 id="sg-custom-title">Tu idea.<br><span>Nuestra luz.</span></h3>
+          <p>Elige un diseño, selecciona las medidas y cuéntanos cómo imaginas tu cuadro. El siguiente paso lo damos juntos.</p>
+          <a href="#personalizar" class="sg-action">Personalizar mi cuadro <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="sg-stage" (pointermove)="moveTilt($event)" (pointerleave)="resetTilt($event)">
+          <div class="sg-orbit" aria-hidden="true"></div>
+          <div data-gallery-art class="sg-art sg-custom-art" role="img" aria-label="Ilustracion conceptual de cuadro NeoArt personalizado">
+            <span class="sg-art-top">NEOART / YOUR STORY</span>
+            <div class="sg-visual sg-visual-custom" aria-hidden="true"><span>YOUR<br>IDEA.</span></div>
+            <span class="sg-art-bottom">MADE TO SHINE</span>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="sg-footer" aria-hidden="true">
+      <span>DESLIZA PARA EXPLORAR</span>
+      <div class="sg-progress-track"><div data-gallery-progress class="sg-progress-fill"></div></div>
+      <span>01 — 03</span>
+    </div>
+  </div>
+  <p class="sg-disclaimer">Ilustraciones conceptuales. Próximamente mostraremos fotografías de cuadros reales de NeoArt.</p>
+</section>
