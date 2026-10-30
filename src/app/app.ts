@@ -2,6 +2,7 @@ import { Component, computed, OnDestroy, OnInit, signal } from '@angular/core';
 import { RevealDirective } from './directives/reveal.directive';
 import { PageMotionDirective } from './directives/page-motion.directive';
 import { CinematicSectionComponent } from './components/cinematic-section/cinematic-section';
+import { LightRevealComponent } from './components/light-reveal/light-reveal';
 
 interface Variante {
   medida: string;
@@ -18,7 +19,7 @@ interface Cuadro {
 
 @Component({
   selector: 'app-root',
-  imports: [RevealDirective, PageMotionDirective, CinematicSectionComponent],
+  imports: [RevealDirective, PageMotionDirective, CinematicSectionComponent, LightRevealComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

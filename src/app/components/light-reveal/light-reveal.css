@@ -1,0 +1,53 @@
+:host { display: block; }
+.light-scene { min-width: 0; }
+.light-grid {
+  background-image: linear-gradient(rgba(185,158,225,.07) 1px,transparent 1px), linear-gradient(90deg,rgba(185,158,225,.07) 1px,transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom,transparent,black 30%,black 80%,transparent);
+}
+.light-halo {
+  width: min(85vw,750px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle,rgba(168,85,247,.44),rgba(124,58,237,.14) 43%,transparent 72%);
+  filter: blur(35px);
+}
+.light-heading {
+  font-size: clamp(2.7rem,5.8vw,6rem); font-weight: 900;
+  line-height: .99; letter-spacing: -.065em;
+}
+.light-caption { opacity: 0; }
+.light-caption:first-child { opacity: 1; }
+.light-stage { perspective: 1300px; }
+.light-poster-shell {
+  width: min(64%,310px); aspect-ratio: 4/5;
+  border: 8px solid #17111e; border-radius: 8px;
+  background: linear-gradient(125deg,rgba(255,255,255,.12),transparent 35%),radial-gradient(circle at 72% 24%,rgba(129,65,187,.44),transparent 60%),#100b19;
+  box-shadow: 0 24px 70px rgba(0,0,0,.5),0 0 20px rgba(168,85,247,.13);
+  transform-style: preserve-3d; will-change: transform;
+}
+.light-poster-inner {
+  --neo-x: 0deg; --neo-y: 0deg;
+  transform: rotateX(var(--neo-x)) rotateY(var(--neo-y));
+  transition: transform 250ms ease-out; transform-style: preserve-3d;
+}
+.light-art-title {
+  font-size: clamp(2.4rem,4.6vw,4.9rem); line-height: .90;
+  letter-spacing: -.075em;
+  color: #f9f6ff;
+  text-shadow: 0 0 20px rgba(176,107,244,.7),0 0 38px rgba(124,58,237,.35);
+}
+.light-neon { opacity: .08; box-shadow: 0 0 12px #c084fc,0 0 35px #a855f7; }
+.light-link { position: relative; z-index: 10; }
+@media (max-width: 639px) {
+  .light-heading { font-size: clamp(2.1rem,10vw,3.4rem); }
+  .light-stage { height: 310px; }
+  .light-poster-shell { width: min(56%,235px); border-width: 5px; }
+  .light-art-title { font-size: 2.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .light-poster-shell { transform: none !important; }
+  .light-poster-inner { transform: none; transition: none; }
+  .light-caption:first-child { opacity: 0; }
+  .light-caption:last-child { opacity: 1; }
+  .light-neon { opacity: 1; }
+  .light-halo { opacity: .8; }
+}
