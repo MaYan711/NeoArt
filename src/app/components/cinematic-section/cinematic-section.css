@@ -1,0 +1,115 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.neo-cinematic {
+  min-width: 0;
+}
+
+.neo-cinematic-grid {
+  background-image:
+    linear-gradient(rgba(160, 140, 190, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(160, 140, 190, 0.08) 1px, transparent 1px);
+  background-size: 45px 45px;
+}
+
+.neo-ambient-light {
+  background: radial-gradient(
+    ellipse at 50% 62%,
+    rgba(139, 92, 246, 0.42),
+    transparent 55%
+  );
+}
+
+.neo-text-viewport {
+  overflow: clip;
+}
+
+.neo-motion-title {
+  font-size: clamp(2.1rem, 7.5vw, 7.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.065em;
+  white-space: nowrap;
+}
+
+.neo-gradient-text {
+  color: transparent;
+  background-image: linear-gradient(110deg, #8b5cf6, #c084fc, #f0abfc);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.neo-moving-frame {
+  width: min(100%, 370px);
+  min-height: 300px;
+  perspective: 1100px;
+}
+
+.neo-interactive-poster {
+  --giro-x: 0deg;
+  --giro-y: 0deg;
+
+  width: min(72%, 275px);
+  aspect-ratio: 4 / 5;
+  border: 7px solid #1e1528;
+  border-radius: 9px;
+  background:
+    linear-gradient(125deg, rgba(255, 255, 255, 0.13), transparent 38%),
+    radial-gradient(circle at 75% 25%, rgba(168, 85, 247, 0.50), transparent 52%),
+    #090711;
+  box-shadow:
+    0 30px 75px rgba(0, 0, 0, 0.42),
+    0 0 65px rgba(168, 85, 247, 0.35);
+
+  /* El cursor controla el giro; GSAP anima solamente el contenedor exterior. */
+  transform: rotateX(var(--giro-x)) rotateY(var(--giro-y));
+  transition: transform 180ms ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.neo-poster-title {
+  font-size: clamp(2.1rem, 4vw, 3.1rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  text-shadow:
+    0 0 18px rgba(192, 132, 252, 0.8),
+    0 0 45px rgba(168, 85, 247, 0.55);
+}
+
+@media (min-width: 1024px) {
+  .neo-moving-frame {
+    width: 420px;
+    min-height: 390px;
+  }
+
+  .neo-interactive-poster {
+    width: 280px;
+  }
+}
+
+@media (max-width: 639px) {
+  .neo-motion-title {
+    font-size: clamp(1.9rem, 8vw, 3rem);
+  }
+
+  .neo-moving-frame {
+    min-height: 280px;
+  }
+
+  .neo-interactive-poster {
+    width: 210px;
+  }
+
+  .neo-poster-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-interactive-poster {
+    transition: none;
+    will-change: auto;
+  }
+}

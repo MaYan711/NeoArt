@@ -1,0 +1,586 @@
+
+<div
+  [class.dark]="modoOscuro()"
+  class="min-h-screen bg-[#faf9f6] text-zinc-900
+         transition-colors duration-500
+         dark:bg-[#09090e] dark:text-white"
+>
+
+  <header
+    class="sticky top-0 z-50 border-b border-zinc-900/5
+         bg-[#faf9f6]/85 backdrop-blur-2xl
+         dark:border-white/10 dark:bg-[#09090e]/80"
+  >
+    <div
+      class="mx-auto flex h-20 max-w-7xl items-center
+           justify-between gap-4 px-6"
+    >
+      <a
+        href="#inicio"
+        class="text-2xl font-black tracking-[0.12em]
+             sm:text-3xl"
+      >
+        NEO<span class="text-violet-600 dark:text-violet-400">ART</span><span class="text-violet-500">.</span>
+      </a>
+
+      <nav
+        aria-label="Navegacion principal"
+        class="hidden items-center gap-9 text-sm
+             font-medium md:flex"
+      >
+        <a href="#inicio" class="transition hover:text-violet-500">
+          Inicio
+        </a>
+        <a href="#catalogo" class="transition hover:text-violet-500">
+          Coleccion
+        </a>
+        <a href="#personalizar" class="transition hover:text-violet-500">
+          Personalizar
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          (click)="cambiarTema()"
+          [attr.aria-label]="modoOscuro()
+          ? 'Activar modo claro' : 'Activar modo oscuro'"
+          class="flex h-10 w-10 items-center justify-center
+               rounded-full border border-zinc-300/70
+               bg-white/50 text-xl transition
+               hover:scale-105 dark:border-white/15
+               dark:bg-white/5"
+        >
+          {{ modoOscuro() ? '☀' : '☾' }}
+        </button>
+
+        <button
+          type="button"
+          (click)="activarAutomatico()"
+          class="hidden items-center gap-2 rounded-full
+               border border-zinc-300/70 px-4 py-2.5
+               text-xs font-medium transition
+               dark:border-white/15 sm:flex"
+        >
+        <span
+          class="h-2 w-2 rounded-full"
+          [class.bg-emerald-500]="modoAutomatico()"
+          [class.bg-zinc-400]="!modoAutomatico()"
+        ></span>
+          Auto
+        </button>
+
+        <button
+          type="button"
+          (click)="menuAbierto.set(!menuAbierto())"
+          [attr.aria-expanded]="menuAbierto()"
+          aria-controls="neo-mobile-nav"
+          aria-label="Abrir o cerrar menu"
+          class="flex h-10 w-10 items-center justify-center
+               rounded-full border border-zinc-300/70
+               dark:border-white/15 md:hidden"
+        >
+        <span class="text-xl">
+          {{ menuAbierto() ? '×' : '☰' }}
+        </span>
+        </button>
+      </div>
+    </div>
+
+    @if (menuAbierto()) {
+      <nav
+        id="neo-mobile-nav"
+        aria-label="Navegacion movil"
+        class="neo-menu flex flex-col gap-5 border-t
+             border-zinc-200 px-6 py-6 text-sm
+             dark:border-white/10 md:hidden"
+      >
+        <a href="#inicio" (click)="menuAbierto.set(false)">
+          Inicio
+        </a>
+
+        <a href="#catalogo" (click)="menuAbierto.set(false)">
+          Coleccion
+        </a>
+
+        <a href="#personalizar" (click)="menuAbierto.set(false)">
+          Personalizar
+        </a>
+
+        <button
+          type="button"
+          (click)="activarAutomatico()"
+          class="text-left text-violet-600 dark:text-violet-400"
+        >
+          Activar tema automatico
+        </button>
+      </nav>
+    }
+  </header>
+
+
+  <main appPageMotion>
+
+    <section id="inicio" class="neo-hero relative isolate overflow-hidden">
+
+      <div class="neo-grid pointer-events-none absolute inset-0"></div>
+
+      <div
+        class="relative mx-auto grid min-h-[720px] max-w-7xl
+           items-center gap-10 px-6 py-20
+           lg:grid-cols-2 lg:gap-16 lg:py-28"
+      >
+        <div data-motion-hero-text class="relative z-10">
+
+          <div class="neo-enter mb-8 flex items-center gap-3">
+        <span
+          class="h-2 w-2 rounded-full bg-violet-500
+                 shadow-[0_0_15px_#a855f7]"
+        ></span>
+
+            <span
+              class="text-xs font-semibold uppercase tracking-[0.25em]
+                 text-violet-600 dark:text-violet-300"
+            >
+          Una nueva forma de vivir el arte
+        </span>
+          </div>
+
+          <h1
+            class="neo-enter neo-delay-1 max-w-[680px]
+               text-[clamp(3.5rem,7vw,6.7rem)]
+               font-black leading-[0.98] tracking-[-0.065em]"
+          >
+            El arte<br>
+            cobra <span class="neo-gradient-text">luz.</span>
+          </h1>
+
+          <p
+            class="neo-enter neo-delay-2 mt-8 max-w-[490px]
+               text-base leading-8 text-zinc-600
+               dark:text-zinc-300 sm:text-lg"
+          >
+            Mas que cuadros. Creamos piezas con identidad,
+            acabados en resina epoxica y luz neon que
+            transforman cualquier espacio.
+          </p>
+
+          <div
+            class="neo-enter neo-delay-3 mt-10 flex
+               flex-wrap items-center gap-4"
+          >
+            <a
+              href="#catalogo"
+              class="group inline-flex items-center gap-4
+                 rounded-full bg-zinc-900 px-7 py-4
+                 text-sm font-semibold text-white
+                 transition duration-300 hover:-translate-y-1
+                 hover:shadow-xl
+                 dark:bg-white dark:text-zinc-950"
+            >
+              Explorar coleccion
+
+              <span class="transition-transform group-hover:translate-x-1">
+            →
+          </span>
+            </a>
+
+            <a
+              href="#personalizar"
+              class="rounded-full border border-zinc-300
+                 px-7 py-4 text-sm font-semibold
+                 transition duration-300 hover:border-violet-500
+                 hover:text-violet-500
+                 dark:border-white/20"
+            >
+              Personalizar cuadro
+            </a>
+          </div>
+
+          <div
+            class="neo-enter neo-delay-3 mt-14 flex flex-wrap
+               gap-6 text-xs font-medium uppercase
+               tracking-[0.16em] text-zinc-500
+               dark:text-zinc-400"
+          >
+            <span>Resina epoxica</span>
+            <span class="text-violet-500">✦</span>
+            <span>Luz neon</span>
+            <span class="text-violet-500">✦</span>
+            <span>Personalizado</span>
+          </div>
+        </div>
+
+        <div data-motion-hero-frame class="neo-stage relative flex items-center justify-center">
+
+          <div class="neo-stage-ring" aria-hidden="true"></div>
+
+          <div data-neo-tilt class="neo-hero-tilt">
+          <div class="neo-art neo-float">
+            <div class="neo-art-shine"></div>
+
+            <div class="relative z-10 flex h-full flex-col
+                    justify-between p-7 sm:p-9">
+
+              <div
+                class="text-[10px] font-semibold uppercase
+                   tracking-[0.3em] text-violet-200"
+              >
+                NEOART / COLLECTION 001
+              </div>
+
+              <div>
+                <p class="neo-art-title">
+                  ART<br>
+                  AFTER<br>
+                  DARK
+                </p>
+
+                <div
+                  class="mt-5 h-[2px] w-20 bg-fuchsia-400
+                     shadow-[0_0_16px_#e879f9]"
+                ></div>
+              </div>
+
+              <p
+                class="text-[10px] uppercase tracking-[0.3em]
+                   text-violet-200"
+              >
+                Light meets design
+              </p>
+            </div>
+          </div>
+
+          </div>
+
+          <div
+            class="neo-floating-note absolute left-0
+               top-[20%] z-20 rounded-2xl border
+               border-white/20 bg-zinc-900/75
+               px-5 py-4 text-white shadow-xl
+               backdrop-blur-xl sm:-left-3"
+          >
+            <p class="text-[10px] uppercase tracking-widest text-zinc-300">
+              Acabado
+            </p>
+
+            <p class="mt-1 text-sm font-semibold">
+              Efecto espejo ✦
+            </p>
+          </div>
+
+          <div
+            class="neo-floating-note neo-floating-note-late
+               absolute bottom-[17%] right-0 z-20
+               rounded-2xl border border-white/20
+               bg-zinc-900/75 px-5 py-4 text-white
+               shadow-xl backdrop-blur-xl sm:-right-3"
+          >
+            <p class="text-[10px] uppercase tracking-widest text-zinc-300">
+              Iluminacion
+            </p>
+
+            <p class="mt-1 text-sm font-semibold">
+              LED integrado
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="relative pb-8 text-center text-[10px]
+           font-semibold uppercase tracking-[0.3em]
+           text-zinc-400"
+      >
+        Desliza para descubrir ↓
+      </div>
+    </section>
+
+
+    <app-cinematic-section />
+
+    <section id="historia" class="neo-story relative overflow-hidden py-24 text-white sm:py-32">
+      <div class="neo-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <p class="mb-7 text-center text-xs font-semibold uppercase tracking-[0.28em] text-violet-300" appReveal>
+          Cada detalle importa
+        </p>
+
+        <div class="neo-story-title-clip">
+          <h2 class="neo-motion-headline text-center font-black uppercase leading-[1.05] tracking-[-0.065em]">
+            <span class="block" data-motion-story-one>NO LLENES PAREDES.</span>
+            <span class="neo-gradient-text block" data-motion-story-two>DALES VIDA.</span>
+          </h2>
+        </div>
+
+        <p class="mx-auto mt-8 max-w-xl text-center text-base leading-7 text-zinc-300 sm:text-lg" appReveal>
+          De una idea a una pieza con personalidad. El brillo de la resina y la luz
+          transforman lo cotidiano en algo que se recuerda.
+        </p>
+
+        <div class="mt-16 grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div data-motion-story-art class="order-1 mx-auto w-full max-w-lg">
+            <div data-neo-tilt class="neo-story-tilt">
+              <div class="neo-showcase-stage" [class.neo-showcase-on]="luzEncendida()">
+                <div class="neo-showcase-orbit" aria-hidden="true"></div>
+                <div class="neo-showcase-piece" aria-label="Demostracion del efecto de iluminacion NeoArt" role="img">
+                  <span class="neo-showcase-label">NEOART / LIGHT STUDY</span>
+                  <strong class="neo-showcase-word">IMAGINA<br>EN GRANDE.</strong>
+                  <span class="neo-showcase-line"></span>
+                  <span class="neo-showcase-label">RESINA + LUZ + DISEÑO</span>
+                </div>
+              </div>
+            </div>
+            <p class="mt-4 text-center text-xs text-zinc-400">Vista ilustrativa: reemplazaremos esta pieza por fotografías reales.</p>
+          </div>
+
+          <div class="order-2" appReveal>
+            <p class="text-xs font-semibold uppercase tracking-[0.26em] text-violet-300">La experiencia NeoArt</p>
+            <h3 class="mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+              Una obra. <span class="block text-violet-300">Dos ambientes.</span>
+            </h3>
+            <p class="mt-6 max-w-lg text-base leading-8 text-zinc-300">
+              De día, el diseño y el acabado espejo capturan las miradas.
+              De noche, la iluminación le da otra dimensión a tu espacio.
+            </p>
+
+            <div class="mt-9 flex flex-wrap items-center gap-3" role="group" aria-label="Simulacion de iluminacion">
+              <button type="button" (click)="luzEncendida.set(false)"
+                [attr.aria-pressed]="!luzEncendida()"
+                [class.neo-light-choice-active]="!luzEncendida()"
+                class="neo-light-choice">Sin luz</button>
+              <button type="button" (click)="luzEncendida.set(true)"
+                [attr.aria-pressed]="luzEncendida()"
+                [class.neo-light-choice-active]="luzEncendida()"
+                class="neo-light-choice">Encender luz <span aria-hidden="true">✦</span></button>
+            </div>
+            <p class="mt-4 text-xs text-zinc-400" aria-live="polite">
+              {{ luzEncendida() ? 'Luz activada: aprecia el brillo del diseño.' : 'Luz apagada: observa el acabado del cuadro.' }}
+            </p>
+            <a href="#catalogo" class="mt-9 inline-flex items-center gap-3 text-sm font-semibold text-violet-300 underline-offset-8 transition hover:underline">
+              Descubrir la colección <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section
+      id="catalogo"
+      appReveal
+      class="bg-zinc-100 py-20 dark:bg-[#111119]"
+    >
+
+      <div class="mx-auto max-w-7xl px-6">
+        <p class="font-semibold uppercase tracking-widest
+                  text-violet-600 dark:text-violet-400">
+          Nuestra coleccion
+        </p>
+
+        <div data-motion-catalog-title>
+          <h2 class="mt-3 text-4xl font-bold sm:text-5xl">Diseños que hablan de ti.</h2>
+        </div>
+
+        <p class="mt-4 text-zinc-600 dark:text-zinc-400">
+          Explora una colección hecha para destacar y elige las medidas de tu cuadro.
+          Los precios son de demostración.
+        </p>
+
+        <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          @for (cuadro of cuadros; track cuadro.id) {
+            <button
+              type="button"
+              appReveal
+              (click)="seleccionarCuadro(cuadro.id)"
+              [attr.aria-label]="'Elegir ' + cuadro.nombre + ' y configurar medidas'"
+              class="neo-card overflow-hidden rounded-2xl
+              border text-left dark:bg-[#1b1b27]"
+              [class.border-violet-500]="
+                idSeleccionado() === cuadro.id
+              "
+                          [class.border-zinc-300]="
+                idSeleccionado() !== cuadro.id
+              "
+            >
+              <div data-neo-tilt class="neo-card-visual flex h-64 items-center justify-center
+                          bg-gradient-to-br from-zinc-900
+                          via-violet-950 to-zinc-900 p-6">
+
+                <div class="flex h-44 w-36 items-center
+                            justify-center rounded-lg
+                            border border-violet-400
+                            bg-black text-center text-white
+                            shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+                  <span class="p-4 text-sm font-bold uppercase
+                               tracking-wider">
+                    {{ cuadro.categoria }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <p class="text-xs uppercase tracking-widest
+                          text-violet-600 dark:text-violet-400">
+                  {{ cuadro.categoria }}
+                </p>
+
+                <h3 class="mt-2 text-xl font-bold">
+                  {{ cuadro.nombre }}
+                </h3>
+
+                <p class="mt-3 text-sm text-zinc-500
+                          dark:text-zinc-400">
+                  {{ cuadro.descripcion }}
+                </p>
+
+                <div class="mt-5 flex items-center justify-between gap-3">
+                  <p class="font-bold">Desde {{ formatearPrecio(cuadro.variantes[0].precio) }}</p>
+                  <span class="text-sm font-semibold text-violet-500">Elegir diseño ↗</span>
+                </div>
+              </div>
+            </button>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="personalizar"
+      class="mx-auto max-w-4xl px-6 py-20"
+    >
+      <p class="font-semibold uppercase tracking-widest text-violet-600 dark:text-violet-400">
+        Hecho para ti
+      </p>
+
+      <h2 class="mt-3 text-4xl font-bold sm:text-5xl">
+        Tu idea. Tus medidas. Tu cuadro.
+      </h2>
+      <p class="mt-4 max-w-2xl text-zinc-600 dark:text-zinc-400">
+        Configura tu diseño sin complicaciones. Cuando esté listo, nos envías la solicitud y coordinamos el anticipo por WhatsApp.
+      </p>
+
+      <div class="mt-10 rounded-2xl border border-zinc-200
+                  p-6 dark:border-zinc-800 md:p-10">
+
+        <h3 class="text-2xl font-bold">
+          {{ cuadroSeleccionado().nombre }}
+        </h3>
+
+        <p class="mt-3 text-zinc-500 dark:text-zinc-400">
+          {{ cuadroSeleccionado().descripcion }}
+        </p>
+
+        <label for="medidas" class="mt-8 block font-semibold">
+          Selecciona las medidas
+        </label>
+
+        <select
+          id="medidas"
+          [value]="medidaSeleccionada()"
+          (change)="cambiarMedida($event)"
+          class="mt-3 w-full rounded-xl border border-zinc-300
+                 bg-white p-4 text-zinc-900
+                 dark:border-zinc-700
+                 dark:bg-zinc-900 dark:text-white"
+        >
+          @for (
+            variante of cuadroSeleccionado().variantes;
+            track variante.medida
+            ) {
+            <option [value]="variante.medida">
+              {{ variante.medida }} -
+              {{ formatearPrecio(variante.precio) }}
+            </option>
+          }
+        </select>
+
+        <p class="mt-8 font-semibold">Cantidad</p>
+
+        <div class="mt-3 flex items-center gap-5">
+          <button
+            type="button"
+            (click)="cambiarCantidad(-1)"
+            class="rounded-lg border px-4 py-2
+                   dark:border-zinc-700"
+          >
+            -
+          </button>
+
+          <span class="text-xl font-bold">
+            {{ cantidad() }}
+          </span>
+
+          <button
+            type="button"
+            (click)="cambiarCantidad(1)"
+            class="rounded-lg border px-4 py-2
+                   dark:border-zinc-700"
+          >
+            +
+          </button>
+        </div>
+
+        <div class="mt-8 border-t border-zinc-200
+                    pt-6 dark:border-zinc-800">
+
+          <p class="text-zinc-500 dark:text-zinc-400">
+            Precio total de demostracion
+          </p>
+
+          <p class="mt-2 text-4xl font-black">
+            {{ formatearPrecio(total()) }}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          (click)="copiarPedido()"
+          class="mt-8 w-full rounded-xl bg-green-600
+                 px-6 py-4 font-bold text-white
+                 hover:bg-green-700"
+        >
+          {{ pedidoCopiado()
+          ? 'Solicitud copiada'
+          : 'Copiar solicitud para WhatsApp' }}
+        </button>
+
+        <p class="mt-4 text-sm text-zinc-500
+                  dark:text-zinc-400">
+          Mas adelante conectaremos este boton directamente
+          con el WhatsApp Business de NeoArt.
+        </p>
+      </div>
+    </section>
+
+    <section id="cierre" class="neo-final relative overflow-hidden py-24 text-white sm:py-32">
+      <div class="neo-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-6xl px-5 text-center sm:px-8">
+        <p class="mb-7 text-xs font-semibold uppercase tracking-[0.27em] text-violet-300">Tu próximo espacio comienza aquí</p>
+        <div class="neo-story-title-clip">
+          <h2 class="neo-motion-headline font-black uppercase leading-[1.05] tracking-[-0.06em]">
+            <span class="block" data-motion-final-one>TU IDEA.</span>
+            <span class="neo-gradient-text block" data-motion-final-two>NUESTRA LUZ.</span>
+          </h2>
+        </div>
+        <p class="mx-auto mt-8 max-w-xl text-base leading-8 text-zinc-300" appReveal>
+          Imagina el cuadro que quieres. Nosotros te ayudamos a convertirlo en una pieza única.
+        </p>
+        <a href="#personalizar" class="mt-9 inline-flex min-h-12 items-center justify-center gap-4 rounded-full bg-white px-8 py-4 text-sm font-bold text-zinc-900 transition hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(192,132,252,0.25)]">
+          Crear mi cuadro <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-zinc-200 px-6 py-10
+                 text-center dark:border-zinc-800">
+    <p class="text-xl font-black tracking-widest">
+      NEOART
+    </p>
+
+    <p class="mt-3 text-sm text-zinc-500">
+      Arte personalizado con resina epoxica y luz neon.
+    </p>
+  </footer>
+</div>
