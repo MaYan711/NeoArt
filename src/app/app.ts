@@ -16,6 +16,11 @@ interface Cuadro {
   categoria: string;
   descripcion: string;
   variantes: Variante[];
+  imagen: string;
+  alt: string;
+  horizontal: boolean;
+  destacado?: string;
+  medidaReferencia: string;
 }
 
 @Component({
@@ -33,44 +38,138 @@ export class App implements OnInit, OnDestroy {
 
   private reloj?: ReturnType<typeof setInterval>;
 
+  // Fotografias originales de trabajos realizados por NeoArt.
+  // Lista real de precios facilitada por NeoArt (quetzales).
+  // Todos los tamanos se muestran como opciones; confirmar medidas especiales al recibir el pedido.
+  readonly preciosPorMedida: Variante[] = [
+    { medida: '40 x 30 cm', precio: 529 },
+    { medida: '60 x 40 cm', precio: 629 },
+    { medida: '95 x 45 cm', precio: 749 },
+    { medida: '80 x 60 cm', precio: 789 },
+    { medida: '128 x 55 cm', precio: 929 },
+    { medida: '100 x 80 cm', precio: 1029 },
+    { medida: '100 x 100 cm', precio: 1149 },
+    { medida: '120 x 80 cm', precio: 1209 },
+    { medida: '120 x 100 cm', precio: 1479 },
+  ];
+
+  // Agrega los enlaces oficiales completos cuando los tengas.
+  // Ejemplo: https://www.instagram.com/tu_perfil/
+  readonly contacto = {
+    envio: 'Envío gratis a toda Guatemala',
+    anticipo: '30% de anticipo para agendar',
+    whatsapp: '3082-9651',
+    handle: '@neoartgt',
+  };
+
+  readonly redes = {
+    instagram: '',
+    facebook: '',
+    tiktok: '',
+  };
   readonly cuadros: Cuadro[] = [
     {
-      id: 'deportivo',
-      nombre: 'Coleccion Automotriz',
-      categoria: 'Automoviles',
-      descripcion: 'Arte automotriz con acabado brillante y luz LED.',
-      variantes: [
-        { medida: '40 x 50 cm', precio: 450 },
-        { medida: '50 x 60 cm', precio: 650 },
-        { medida: '60 x 80 cm', precio: 900 },
-      ],
+      id: 'tony-blanco', nombre: 'Tony Montana · Neon blanco', categoria: 'Money Art',
+      descripcion: 'Cuadro horizontal estilo billete, con contorno iluminado.',
+      imagen: '/images/cuadros/tony-montana-blanco.jpeg',
+      alt: 'Cuadro real NeoArt estilo Tony Montana con contorno de neon blanco',
+      horizontal: true, destacado: 'Mas solicitado',
+      medidaReferencia: '95 x 45 cm',
+      variantes: this.preciosPorMedida,
     },
     {
-      id: 'musica',
-      nombre: 'Coleccion Musical',
-      categoria: 'Musica',
-      descripcion: 'Diseños inspirados en la musica y sus artistas.',
-      variantes: [
-        { medida: '40 x 50 cm', precio: 400 },
-        { medida: '50 x 60 cm', precio: 600 },
-        { medida: '60 x 80 cm', precio: 850 },
-      ],
+      id: 'messi', nombre: 'Leo Messi · Barcelona', categoria: 'Futbol',
+      descripcion: 'Diseño vertical con escudo iluminado, resina y acabado brillante.',
+      imagen: '/images/cuadros/messi-barcelona.jpeg',
+      alt: 'Cuadro real NeoArt de Messi con iluminacion en el escudo de Barcelona',
+      horizontal: false, destacado: 'Mas solicitado',
+      medidaReferencia: '40 x 30 cm',
+      variantes: this.preciosPorMedida,
     },
     {
-      id: 'personalizado',
-      nombre: 'Diseno Personalizado',
-      categoria: 'Personalizados',
-      descripcion: 'Creamos un cuadro especial a tu gusto.',
-      variantes: [
-        { medida: '40 x 50 cm', precio: 500 },
-        { medida: '50 x 60 cm', precio: 700 },
-        { medida: '60 x 80 cm', precio: 950 },
-      ],
+      id: 'tony-clasico', nombre: 'Tony Montana · Money Art', categoria: 'Money Art',
+      descripcion: 'Formato horizontal con retrato y acabado tipo espejo.',
+      imagen: '/images/cuadros/tony-montana-clasico.jpeg',
+      alt: 'Cuadro real NeoArt de Tony Montana con fondo de billete y resina brillante',
+      horizontal: true, destacado: 'Mas solicitado',
+      medidaReferencia: '95 x 45 cm',
+      variantes: this.preciosPorMedida,
+    },
+    {
+      id: 'porsche', nombre: 'Porsche GT3 RS', categoria: 'Automoviles',
+      descripcion: 'Diseño horizontal con iluminacion roja en la parte trasera.',
+      imagen: '/images/cuadros/porsche-gt3rs.jpeg',
+      alt: 'Cuadro horizontal real NeoArt de Porsche GT3 RS con luces rojas',
+      horizontal: true, destacado: 'Formato horizontal',
+      medidaReferencia: '120 x 100 cm',
+      variantes: this.preciosPorMedida,
+    },
+    {
+      id: 'mustang', nombre: 'Mustang · Neon rojo', categoria: 'Automoviles',
+      descripcion: 'Cuadro vertical con borde rojo y detalles de iluminacion frontal.',
+      imagen: '/images/cuadros/mustang-neon.jpeg',
+      alt: 'Cuadro real NeoArt de Mustang con borde iluminado rojo',
+      horizontal: false,
+      medidaReferencia: '120 x 100 cm',
+      variantes: this.preciosPorMedida,
+    },
+    {
+      id: 'bad-bunny', nombre: 'Bad Bunny · YHLQMDLG', categoria: 'Musica',
+      descripcion: 'Arte inspirado en musica, fotografiado en mano para mostrar su escala.',
+      imagen: '/images/cuadros/bad-bunny.jpeg',
+      alt: 'Cuadro real NeoArt inspirado en Bad Bunny YHLQMDLG sostenido en mano',
+      horizontal: false,
+      medidaReferencia: '40 x 30 cm',
+      variantes: this.preciosPorMedida,
+    },
+    {
+      id: 'bart-money', nombre: 'Bart · Money Art', categoria: 'Money Art',
+      descripcion: 'Composicion horizontal tipo billete con contorno iluminado.',
+      imagen: '/images/cuadros/money-bart.jpeg',
+      alt: 'Cuadro horizontal real NeoArt con Bart y billete, luz amarilla',
+      horizontal: true, destacado: 'Formato horizontal',
+      medidaReferencia: '128 x 55 cm',
+      variantes: this.preciosPorMedida,
+    },
+    {
+      id: 'money-verde', nombre: 'Money Art · Neon verde', categoria: 'Money Art',
+      descripcion: 'Composicion horizontal con contornos verdes iluminados.',
+      imagen: '/images/cuadros/money-verde.jpeg',
+      alt: 'Cuadro horizontal real NeoArt estilo dinero con luces verdes',
+      horizontal: true,
+      medidaReferencia: '128 x 55 cm',
+      variantes: this.preciosPorMedida,
+    },
+    {
+      id: 'scrooge', nombre: 'Money Art · Pato', categoria: 'Money Art',
+      descripcion: 'Formato panoramico con ilustracion y efecto de resina brillante.',
+      imagen: '/images/cuadros/money-scrooge.jpeg',
+      alt: 'Cuadro horizontal real NeoArt de personaje pato con motivo de dinero',
+      horizontal: true,
+      medidaReferencia: '128 x 55 cm',
+      variantes: this.preciosPorMedida,
+    },
+    {
+      id: 'goku', nombre: 'Anime · Guerrero', categoria: 'Anime',
+      descripcion: 'Cuadro vertical de anime con iluminacion azul interior.',
+      imagen: '/images/cuadros/goku-neon.jpeg',
+      alt: 'Cuadro real NeoArt de personaje anime con zonas iluminadas en azul',
+      horizontal: false,
+      medidaReferencia: '120 x 100 cm',
+      variantes: this.preciosPorMedida,
     },
   ];
 
-  readonly idSeleccionado = signal('deportivo');
-  readonly medidaSeleccionada = signal('40 x 50 cm');
+  readonly categorias = ['Todos', 'Money Art', 'Futbol', 'Automoviles', 'Musica', 'Anime'];
+  readonly categoriaActiva = signal('Todos');
+  readonly cuadrosFiltrados = computed(() =>
+    this.categoriaActiva() === 'Todos'
+      ? this.cuadros
+      : this.cuadros.filter(cuadro => cuadro.categoria === this.categoriaActiva())
+  );
+
+  readonly idSeleccionado = signal('tony-blanco');
+  readonly medidaSeleccionada = signal('95 x 45 cm');
   readonly cantidad = signal(1);
   readonly pedidoCopiado = signal(false);
 
@@ -86,6 +185,12 @@ export class App implements OnInit, OnDestroy {
   );
 
   readonly total = computed(() => this.varianteSeleccionada().precio * this.cantidad());
+
+  precioReferencia(cuadro: Cuadro): number {
+    return cuadro.variantes.find((variante) => variante.medida === cuadro.medidaReferencia)?.precio
+      ?? cuadro.variantes[0].precio;
+  }
+
 
   ngOnInit(): void {
     this.actualizarTema();
@@ -126,7 +231,7 @@ export class App implements OnInit, OnDestroy {
     }
 
     this.idSeleccionado.set(id);
-    this.medidaSeleccionada.set(cuadro.variantes[0].medida);
+    this.medidaSeleccionada.set(cuadro.medidaReferencia);
     this.cantidad.set(1);
     this.pedidoCopiado.set(false);
 
@@ -160,8 +265,10 @@ export class App implements OnInit, OnDestroy {
       `Modelo: ${this.cuadroSeleccionado().nombre}\n` +
       `Medidas: ${this.medidaSeleccionada()}\n` +
       `Cantidad: ${this.cantidad()}\n` +
-      `Precio mostrado: ${this.formatearPrecio(this.total())}\n\n` +
-      `Quisiera confirmar mi pedido y el anticipo.`;
+      `Precio segun medidas: ${this.formatearPrecio(this.total())}\n` +
+      `Anticipo: 30% para agendar\n` +
+      `Envío: gratis a toda Guatemala\n\n` +
+      `Quisiera confirmar la disponibilidad, el anticipo y el tiempo de entrega.`;
 
     try {
       await navigator.clipboard.writeText(mensaje);

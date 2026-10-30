@@ -490,3 +490,214 @@
     transform: none !important;
   }
 }
+
+
+/* NeoArt: fotografias originales sin cambios de bytes.
+   La orientacion horizontal se consigue SOLO con CSS. */
+.neo-photo-window {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #111017;
+  container-type: size;
+}
+.neo-photo-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.neo-photo-image.neo-photo-rotated {
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  width: 100cqh;
+  height: 100cqw;
+  max-width: none;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+.neo-real-hero {
+  position: relative;
+  width: min(94%, 560px);
+  aspect-ratio: 16 / 10;
+  border: 7px solid #131019;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px #0006, 0 0 60px #a855f74a;
+}
+.neo-real-hero-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 16px;
+  background: linear-gradient(transparent, #08060ccc);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  pointer-events: none;
+}
+.neo-real-card-visual {
+  position: relative;
+  height: 292px;
+  padding: 14px;
+  background: #15131e;
+}
+.neo-catalog-window {
+  border-radius: 10px;
+  background: #0e0d13;
+}
+.neo-feature-label {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  border-radius: 999px;
+  background: rgba(9, 7, 15, .83);
+  color: #fff;
+  padding: 7px 12px;
+  font-size: 11px;
+  font-weight: 750;
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+.neo-category-filter {
+  min-height: 42px;
+  border: 1px solid #a1a1aa60;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 650;
+  font-size: 13px;
+  transition: background .2s ease, border-color .2s ease;
+}
+.neo-category-filter:hover, .neo-category-filter:focus-visible { border-color: #a78bfa; }
+.neo-category-filter-active { background: #7c3aed; color: white; border-color: #7c3aed; }
+.neo-real-story-photo {
+  width: min(75%, 300px);
+  padding: 0;
+  overflow: hidden;
+  background: #09070f;
+}
+.neo-real-story-photo img { width: 100%; height: 100%; object-fit: cover; }
+.neo-showcase-stage:not(.neo-showcase-on) .neo-real-story-photo img { filter: brightness(.8); }
+.neo-detail-image { margin: 0 auto; max-width: 570px; }
+.neo-detail-image .neo-photo-window { height: 360px; border-radius: 12px; }
+.neo-detail-image p { margin-top: 10px; text-align: center; font-size: 12px; color: #71717a; }
+.dark .neo-detail-image p { color: #a1a1aa; }
+@media (max-width: 639px) {
+  .neo-real-hero { width: min(95%, 420px); border-width: 5px; }
+  .neo-stage { min-height: 320px; }
+  .neo-real-card-visual { height: 265px; }
+  .neo-detail-image .neo-photo-window { height: 280px; }
+}
+
+/* Pie de pagina y accesos a redes sociales */
+.neo-social {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 46px; border-radius: 999px; padding: .65rem 1rem;
+  border: 1px solid rgba(139,92,246,.33);
+  background: rgba(139,92,246,.07); font-size: .875rem; font-weight: 650;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+a.neo-social:hover, a.neo-social:focus-visible { transform: translateY(-3px); border-color: #a78bfa; background: rgba(139,92,246,.15); }
+a.neo-social:focus-visible { outline: 2px solid #a78bfa; outline-offset: 3px; }
+.neo-social-icon { display:inline-flex; align-items:center; justify-content:center; width: 20px; font-size: 1.35rem; font-weight: 900; line-height: 1; }
+.neo-social-pending { opacity: .58; cursor: not-allowed; }
+
+
+/* Banda de confianza / conversion */
+.neo-service-band {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+}
+.neo-service-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 15% 50%, rgba(168,85,247,.08), transparent 32%),
+              radial-gradient(circle at 85% 50%, rgba(139,92,246,.08), transparent 30%);
+}
+.neo-service-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+  min-height: 100%;
+  padding: 1.15rem 1.1rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(161,161,170,.24);
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(248,245,255,.84));
+  box-shadow: 0 10px 28px rgba(15,23,42,.05);
+}
+.dark .neo-service-card {
+  border-color: rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow: 0 18px 34px rgba(0,0,0,.18);
+}
+.neo-service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: .95rem;
+  background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(168,85,247,.1));
+  box-shadow: inset 0 0 0 1px rgba(124,58,237,.15);
+  font-size: 1.25rem;
+}
+.dark .neo-service-icon {
+  background: linear-gradient(135deg, rgba(167,139,250,.28), rgba(124,58,237,.14));
+}
+.neo-service-label {
+  margin: 0 0 .2rem;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #7c3aed;
+}
+.dark .neo-service-label { color: #c4b5fd; }
+.neo-service-card h3 {
+  margin: 0;
+  font-size: 1.03rem;
+  line-height: 1.35;
+  font-weight: 800;
+  color: #18181b;
+}
+.dark .neo-service-card h3 { color: #fff; }
+.neo-service-card p:last-child {
+  margin-top: .45rem;
+  color: #71717a;
+  line-height: 1.6;
+  font-size: .92rem;
+}
+.dark .neo-service-card p:last-child { color: #a1a1aa; }
+@media (max-width: 639px) {
+  .neo-service-card { padding: 1rem; gap: .85rem; }
+  .neo-service-icon { width: 2.7rem; height: 2.7rem; }
+}
+
+/* Historia: claro por defecto, oscuro bajo tema dark */
+.neo-story {
+  background: radial-gradient(ellipse at 50% 30%, rgba(139, 92, 246, 0.12), transparent 62%), #f8f6fc;
+  color: #18181b;
+}
+.dark .neo-story {
+  background: radial-gradient(ellipse at 50% 30%, rgba(139, 92, 246, 0.21), transparent 62%), #0b0b12;
+  color: #fff;
+}
+.neo-showcase-stage {
+  background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(244,240,252,.7));
+}
+.dark .neo-showcase-stage {
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+}
+
+.neo-social-static { cursor: default; }

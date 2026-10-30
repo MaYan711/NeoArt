@@ -29,62 +29,85 @@ export class LightRevealComponent {
   private initialize(): void {
     gsap.registerPlugin(ScrollTrigger);
     const section = this.section().nativeElement;
-    const poster = section.querySelector<HTMLElement>('[data-light-poster]');
+    const reveal = section.querySelector<HTMLElement>('[data-light-wipe]');
+    const stage = section.querySelector<HTMLElement>('[data-light-stage]');
     const halo = section.querySelector<HTMLElement>('[data-light-halo]');
-    const neon = section.querySelector<HTMLElement>('[data-light-neon]');
-    const captions = Array.from(section.querySelectorAll<HTMLElement>('[data-light-caption]'));
+    const title = section.querySelector<HTMLElement>('[data-light-title]');
+    const subtitle = section.querySelector<HTMLElement>('[data-light-subtitle]');
     const progress = section.querySelector<HTMLElement>('[data-light-progress]');
+    const scan = section.querySelector<HTMLElement>('[data-light-scan]');
 
-    if (!poster || !halo || !neon || captions.length !== 3 || !progress) {
-      console.warn('NeoArt: no se encontraron los elementos de Light Reveal');
+    if (!reveal || !stage || !halo || !title || !subtitle || !progress || !scan) {
+      console.warn('NeoArt: elementos incompletos en Light Reveal');
       return;
     }
 
     this.media = gsap.matchMedia();
-    this.media.add({
-      desktop: '(min-width: 1024px)',
-      reduced: '(prefers-reduced-motion: reduce)',
-    }, (context) => {
-      if (context.conditions?.['reduced']) {
-        gsap.set(halo, { opacity: 0.8, scale: 1.2 });
-        gsap.set(neon, { opacity: 1 });
-        gsap.set(captions, { opacity: 0 });
-        gsap.set(captions[2], { opacity: 1 });
-        return;
-      }
+    this.media.add(
+      {
+        desktop: '(min-width: 1024px) and (min-height: 700px)',
+        compact: '(max-width: 1023px), (max-height: 699px)',
+        reduced: '(prefers-reduced-motion: reduce)',
+      },
+      (context) => {
+        const desktop = Boolean(context.conditions?.['desktop']);
+        if (context.conditions?.['reduced']) {
+          gsap.set(reveal, { clipPath: 'inset(0 0% 0 0)' });
+          gsap.set(progress, { scaleX: 1 });
+          gsap.set(scan, { opacity: 0 });
+          return;
+        }
 
-      const desktop = Boolean(context.conditions?.['desktop']);
-      gsap.set(captions, { opacity: 0, y: 20 });
-      gsap.set(captions[0], { opacity: 1, y: 0 });
-      gsap.set(halo, { opacity: 0.04, scale: 0.7 });
-      gsap.set(neon, { opacity: 0.08 });
+        const timeline = gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: {
+            trigger: section,
+            start: desktop ? 'top top' : 'top 88%',
+            end: desktop ? '+=1050' : 'bottom 22%',
+            scrub: desktop ? 0.8 : 0.5,
+            pin: desktop,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
 
-      const timeline = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: {
-          trigger: section,
-          start: desktop ? 'top top' : 'top 80%',
-          end: desktop ? '+=1500' : 'bottom 15%',
-          scrub: 0.65,
-          pin: desktop,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          // Activar temporalmente para diagnosticar: markers: true
-        },
-      });
-
-      timeline.fromTo(poster,
-        { scale: desktop ? 0.72 : 0.92, y: desktop ? 55 : 25, rotationY: -12, rotationX: 5 },
-        { scale: 1.02, y: 0, rotationY: 3, rotationX: -2, duration: 1 }, 0);
-      timeline.to(halo, { opacity: 0.95, scale: 1.3, duration: 0.65 }, 0.27);
-      timeline.to(neon, { opacity: 1, duration: 0.65 }, 0.27);
-      timeline.to(captions[0], { opacity: 0, y: -20, duration: 0.15 }, 0.22);
-      timeline.to(captions[1], { opacity: 1, y: 0, duration: 0.2 }, 0.38);
-      timeline.to(captions[1], { opacity: 0, y: -20, duration: 0.15 }, 0.65);
-      timeline.to(captions[2], { opacity: 1, y: 0, duration: 0.2 }, 0.8);
-      timeline.fromTo(progress, { scaleX: 0 }, { scaleX: 1, duration: 1 }, 0);
-    });
-
+        // La misma foto aparece en dos capas: una oscurecida y otra original.
+        // Solo se anima la mascara de la capa original, no se modifica el JPEG.
+        timeline.fromTo(
+          reveal,
+          { clipPath: 'inset(0 100% 0 0)' },
+          { clipPath: 'inset(0 0% 0 0)', duration: 1 },
+          0,
+        );
+        timeline.fromTo(
+          stage,
+          { scale: desktop ? 0.84 : 0.94, y: desktop ? 45 : 16, rotationY: -5 },
+          { scale: 1.04, y: desktop ? -20 : 0, rotationY: 2, duration: 1 },
+          0,
+        );
+        timeline.fromTo(
+          halo,
+          { opacity: 0.12, scale: 0.8 },
+          { opacity: 0.85, scale: 1.3, duration: 1 },
+          0,
+        );
+        timeline.fromTo(
+          title,
+          { y: desktop ? 35 : 14, opacity: 0.55 },
+          { y: desktop ? -14 : 0, opacity: 1, duration: 1 },
+          0,
+        );
+        timeline.fromTo(
+          subtitle,
+          { y: 18, opacity: 0.45 },
+          { y: 0, opacity: 1, duration: 0.8 },
+          0.2,
+        );
+        timeline.fromTo(progress, { scaleX: 0 }, { scaleX: 1, duration: 1 }, 0);
+        timeline.fromTo(scan, { left: '0%', opacity: 0.85 }, { left: '100%', opacity: 0, duration: 1 }, 0);
+        return () => timeline.kill();
+      },
+    );
     requestAnimationFrame(() => ScrollTrigger.refresh());
   }
 
@@ -93,14 +116,14 @@ export class LightRevealComponent {
         !window.matchMedia('(hover: hover) and (pointer: fine)').matches ||
         window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const target = event.currentTarget as HTMLElement;
-    const rect = target.getBoundingClientRect();
+    const area = event.currentTarget as HTMLElement;
+    const rect = area.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
     const art = this.artwork().nativeElement;
-    art.style.setProperty('--neo-x', `${-y * 10}deg`);
-    art.style.setProperty('--neo-y', `${x * 10}deg`);
+    art.style.setProperty('--neo-x', `${-y * 8}deg`);
+    art.style.setProperty('--neo-y', `${x * 8}deg`);
   }
 
   resetPointer(): void {

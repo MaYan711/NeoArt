@@ -105,24 +105,6 @@ export class PageMotionDirective implements AfterViewInit, OnDestroy {
           });
         }
 
-        const final = element('#cierre');
-        const finalOne = element('[data-motion-final-one]');
-        const finalTwo = element('[data-motion-final-two]');
-        if (final && finalOne && finalTwo) {
-          const distance = desktop ? 85 : mobile ? 12 : 36;
-          const timeline = gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: {
-              trigger: final,
-              start: 'top 92%',
-              end: 'bottom 18%',
-              scrub: 0.7,
-            },
-          });
-          timeline.fromTo(finalOne, { x: -distance }, { x: distance, duration: 1 }, 0);
-          timeline.fromTo(finalTwo, { x: distance }, { x: -distance, duration: 1 }, 0);
-        }
-
         // Cursor movement is bound to INNER elements only: never to the element
         // whose transform is being controlled by GSAP or appReveal.
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {

@@ -1,7 +1,7 @@
 <section
   #escena
   id="experiencia"
-  class="neo-cinematic relative isolate bg-[#08080e] text-white"
+  class="neo-cinematic relative isolate"
 >
   <div
     data-iluminacion
@@ -15,10 +15,10 @@
 
   <div
     class="relative mx-auto flex min-h-[90svh] max-w-7xl flex-col
-           items-center justify-center px-5 py-20 sm:px-8
-           lg:min-h-[100svh] lg:py-12"
+           items-center justify-center px-5 py-14 sm:px-8
+           lg:min-h-[100svh] lg:py-8"
   >
-    <p class="mb-8 text-center text-xs font-semibold uppercase tracking-[0.3em] text-violet-300">
+    <p class="mb-8 text-center text-xs font-semibold uppercase tracking-[0.3em] text-violet-600 dark:text-violet-300">
       NeoArt Experience
     </p>
 
@@ -31,42 +31,34 @@
 
     <p
       data-descripcion
-      class="mx-auto mt-6 max-w-xl text-center text-sm leading-7
-             text-zinc-400 sm:text-base"
+      class="mx-auto mt-6 max-w-xl text-center text-sm leading-7 text-zinc-600 dark:text-zinc-400 sm:text-base"
     >
       Creamos experiencias visuales que combinan resina epoxica,
       creatividad y luz neon.
     </p>
 
     <div
-      class="relative mt-8 flex w-full max-w-xl items-center
-             justify-center sm:mt-10"
+      class="relative mt-8 flex w-full max-w-5xl items-center
+             justify-center sm:mt-8"
       (pointermove)="moverPoster($event)"
       (pointerleave)="restaurarPoster()"
     >
       <div data-marco class="neo-moving-frame relative flex items-center justify-center">
         <div
           #poster
-          class="neo-interactive-poster relative flex flex-col
-                 justify-between p-6 sm:p-8"
+          class="neo-interactive-poster relative"
           role="img"
-          aria-label="Ilustracion de un cuadro NeoArt iluminado"
+          aria-label="Cuadro horizontal real NeoArt Tony Montana con fondo de billete"
         >
-          <p class="text-[10px] font-semibold uppercase tracking-[0.3em] text-violet-200">
-            NEOART / 001
-          </p>
-          <div>
-            <h3 class="neo-poster-title font-black">LIGHT<br>MEETS<br>ART.</h3>
-            <div class="mt-5 h-[2px] w-24 bg-fuchsia-400 shadow-[0_0_20px_#e879f9]"></div>
-          </div>
-          <p class="text-[10px] uppercase tracking-[0.25em] text-violet-200">
-            Epoxy / LED / Design
-          </p>
+          <img class="neo-cinema-real-img"
+               src="/images/cuadros/tony-montana-clasico.jpeg"
+               alt="Fotografia original de cuadro NeoArt Tony Montana"
+               loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
 
-    <p class="mt-8 text-center text-[10px] font-semibold uppercase tracking-[0.25em] text-zinc-500">
+    <p class="mt-8 text-center text-[10px] font-semibold uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
       Desliza para descubrir
     </p>
   </div>
