@@ -3,6 +3,7 @@ import { RevealDirective } from './directives/reveal.directive';
 import { PageMotionDirective } from './directives/page-motion.directive';
 import { CinematicSectionComponent } from './components/cinematic-section/cinematic-section';
 import { LightRevealComponent } from './components/light-reveal/light-reveal';
+import { ScrollGalleryComponent } from './components/scroll-gallery/scroll-gallery';
 
 interface Variante {
   medida: string;
@@ -19,7 +20,7 @@ interface Cuadro {
 
 @Component({
   selector: 'app-root',
-  imports: [RevealDirective, PageMotionDirective, CinematicSectionComponent, LightRevealComponent],
+  imports: [RevealDirective, PageMotionDirective, CinematicSectionComponent, LightRevealComponent, ScrollGalleryComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
