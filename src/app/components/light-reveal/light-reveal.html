@@ -1,0 +1,47 @@
+<section #section id="luz-en-movimiento" class="light-scene relative isolate bg-[#08070f] text-white">
+  <div class="light-clip relative flex min-h-[95svh] items-center justify-center overflow-hidden px-5 py-20 lg:min-h-[100svh] lg:py-12">
+    <div class="light-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div data-light-halo class="light-halo pointer-events-none absolute" aria-hidden="true"></div>
+
+    <div class="relative mx-auto grid w-full max-w-6xl items-center gap-5 lg:grid-cols-2 lg:gap-12">
+      <div class="relative z-10 mx-auto flex min-h-44 w-full max-w-xl flex-col justify-center text-center lg:min-h-72 lg:text-left">
+        <p class="mb-7 text-xs font-semibold uppercase tracking-[0.28em] text-violet-300">NEOART / LIGHT REVEAL</p>
+        <div class="light-caption-box relative h-40 sm:h-48 lg:h-60">
+          <div data-light-caption class="light-caption absolute inset-x-0 top-0">
+            <h2 class="light-heading">Una obra.<br><span class="text-violet-300">Dos mundos.</span></h2>
+            <p class="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">Descubre lo que cambia cuando la luz entra en escena.</p>
+          </div>
+          <div data-light-caption class="light-caption absolute inset-x-0 top-0">
+            <h2 class="light-heading">Cada detalle<br><span class="text-violet-300">cobra vida.</span></h2>
+            <p class="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">El brillo y la profundidad transforman la pieza.</p>
+          </div>
+          <div data-light-caption class="light-caption absolute inset-x-0 top-0">
+            <h2 class="light-heading">Ahora sí.<br><span class="text-violet-300">Esto es NeoArt.</span></h2>
+            <p class="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">Elige el diseño y las medidas para hacerlo tuyo.</p>
+            <a href="#catalogo" class="light-link mt-5 inline-flex min-h-11 items-center rounded-full border border-violet-400/50 px-5 text-sm font-semibold text-white transition hover:border-violet-200">Explorar cuadros <span class="ml-3" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="mt-6 flex items-center gap-3" aria-hidden="true">
+          <span class="text-[10px] uppercase tracking-[0.2em] text-zinc-400">Sin luz</span>
+          <div class="h-1 w-28 origin-left overflow-hidden rounded-full bg-white/15"><div data-light-progress class="h-full w-full origin-left bg-violet-400"></div></div>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-zinc-400">Iluminado</span>
+        </div>
+      </div>
+
+      <div class="light-stage relative mx-auto flex h-[360px] w-full max-w-lg items-center justify-center sm:h-[450px] lg:h-[620px]"
+           (pointermove)="movePointer($event)" (pointerleave)="resetPointer()">
+        <div data-light-poster class="light-poster-shell relative">
+          <div #artwork class="light-poster-inner relative flex h-full flex-col justify-between p-7 sm:p-9" role="img" aria-label="Ilustracion de un cuadro NeoArt que se ilumina con el desplazamiento">
+            <span class="text-[10px] font-semibold uppercase tracking-[0.25em] text-violet-200">NEOART / ARTWORK 001</span>
+            <div>
+              <p class="light-art-title font-black">ART<br>AFTER<br>DARK.</p>
+              <div data-light-neon class="light-neon mt-6 h-[3px] w-28 rounded-full bg-violet-300"></div>
+            </div>
+            <span class="text-[10px] font-semibold uppercase tracking-[0.25em] text-violet-200">RESIN / LED / DESIGN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="pointer-events-none absolute bottom-6 text-center text-[10px] uppercase tracking-[0.25em] text-zinc-500 lg:bottom-9">Desliza para encender la experiencia ↓</p>
+  </div>
+</section>
