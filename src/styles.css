@@ -15,3 +15,40 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* NeoArt V8: selector visual de medidas; funciona en claro y oscuro. */
+.neo-size-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.neo-size-eyebrow { margin: 0 0 .5rem; color: #7c3aed; font-size: .7rem; font-weight: 800; letter-spacing: .14em; }
+.neo-size-title { font-size: clamp(1.45rem, 3vw, 1.9rem); font-weight: 800; line-height: 1.2; letter-spacing: -.035em; }
+.neo-size-help { margin-top: .55rem; color: #71717a; font-size: .9rem; line-height: 1.5; }
+.neo-size-count { padding: .5rem .8rem; border: 1px solid rgba(124,58,237,.22); background: rgba(124,58,237,.065); border-radius: 99px; color: #6d28d9; font-size: .73rem; white-space: nowrap; font-weight: 750; }
+.neo-size-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .85rem; }
+.neo-size-option { display: flex; flex-direction: column; min-width: 0; text-align: left; position: relative; padding: 1.05rem; border: 1px solid #d4d4d8; border-radius: 1.1rem; background: linear-gradient(150deg, #fff, #faf9ff); color: #18181b; cursor: pointer; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease; }
+.neo-size-option:hover { border-color: #a78bfa; transform: translateY(-3px); box-shadow: 0 12px 28px rgba(84,40,151,.09); }
+.neo-size-option:focus-visible { outline: 3px solid #a78bfa; outline-offset: 3px; }
+.neo-size-option-active { border-color: #8b5cf6; background: linear-gradient(145deg, #f5edff, #fff); box-shadow: 0 0 0 2px rgba(139,92,246,.20), 0 12px 25px rgba(84,40,151,.08); }
+.neo-size-option-top { display: flex; justify-content: space-between; align-items: flex-start; gap: .4rem; width: 100%; }
+.neo-size-preview { display: inline-flex; height: 58px; width: 102px; max-width: calc(100% - 22px); align-items: center; justify-content: flex-start; }
+.neo-size-preview-art { display: block; height: 39px; max-width: 100%; flex: none; border: 3px solid #9f8dc5; border-radius: 3px; background: linear-gradient(135deg, #251638, #69429c 53%, #d6b7f9); box-shadow: 0 4px 12px #8b5cf633, inset 0 0 14px #ffffff1a; transform: rotate(-5deg); transition: transform .25s ease, border-color .25s ease; overflow: hidden; }
+.neo-size-preview-art > span { display: block; width: 45%; height: 120%; margin: -10% auto; border-left: 2px solid rgba(255,255,255,.6); border-right: 1px solid rgba(255,255,255,.25); transform: skewX(-18deg); }
+.neo-size-option:hover .neo-size-preview-art, .neo-size-option-active .neo-size-preview-art { transform: rotate(0); border-color: #c084fc; }
+.neo-size-check { display: inline-grid; place-items: center; width: 25px; height: 25px; border: 1px solid #d4d4d8; border-radius: 50%; font-size: .85rem; color: transparent; background: transparent; transition: all .2s ease; }
+.neo-size-option-active .neo-size-check { color: white; border-color: #7c3aed; background: #7c3aed; }
+.neo-size-dimensions { display: block; font-size: .91rem; font-weight: 800; margin-top: .45rem; letter-spacing: -.015em; }
+.neo-size-price { display: block; margin-top: .27rem; font-size: clamp(1.15rem,2vw,1.5rem); font-weight: 900; letter-spacing: -.035em; color: #6d28d9; }
+.neo-size-caption { display: block; margin-top: auto; padding-top: .7rem; font-size: .72rem; color: #71717a; }
+.neo-size-reference { font-weight: 750; color: #7c3aed; }
+.neo-size-order-summary { margin-top: 1rem; padding: .85rem 1rem; border-radius: .85rem; background: rgba(124,58,237,.065); display: flex; gap: .5rem 1rem; justify-content: space-between; flex-wrap: wrap; font-size: .83rem; color: #52525b; }
+.neo-size-order-summary strong { color: #6d28d9; }
+.dark .neo-size-help, .dark .neo-size-caption { color: #a1a1aa; }
+.dark .neo-size-count { color: #d8b4fe; border-color: rgba(216,180,254,.28); background: rgba(139,92,246,.12); }
+.dark .neo-size-option { color: #fff; border-color: #393344; background: linear-gradient(145deg, #201a2b, #15131e); }
+.dark .neo-size-option:hover { border-color: #a78bfa; box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+.dark .neo-size-option-active { border-color: #c084fc; background: linear-gradient(145deg, #302044, #191421); box-shadow: 0 0 0 2px rgba(192,132,252,.25), 0 12px 28px #0004; }
+.dark .neo-size-option-active .neo-size-check { border-color: #a855f7; background: #a855f7; }
+.dark .neo-size-price, .dark .neo-size-reference, .dark .neo-size-eyebrow { color: #d8b4fe; }
+.dark .neo-size-order-summary { background: rgba(192,132,252,.09); color: #d4d4d8; }
+.dark .neo-size-order-summary strong { color: #d8b4fe; }
+@media (max-width: 750px) { .neo-size-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 430px) { .neo-size-grid { gap: .55rem; } .neo-size-option { padding: .8rem; border-radius: .85rem; } .neo-size-preview { height: 42px; width: 75px; } .neo-size-preview-art { height: 30px; } .neo-size-dimensions { font-size: .81rem; } .neo-size-price { font-size: 1.13rem; } .neo-size-caption { font-size: .66rem; } .neo-size-heading { align-items: flex-start; } }
+@media (prefers-reduced-motion: reduce) { .neo-size-option, .neo-size-preview-art, .neo-size-check { transition: none; } .neo-size-option:hover { transform: none; } }

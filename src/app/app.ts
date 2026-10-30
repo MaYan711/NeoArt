@@ -185,6 +185,7 @@ export class App implements OnInit, OnDestroy {
   );
 
   readonly total = computed(() => this.varianteSeleccionada().precio * this.cantidad());
+  readonly anticipo = computed(() => Math.round(this.total() * 30) / 100);
 
   precioReferencia(cuadro: Cuadro): number {
     return cuadro.variantes.find((variante) => variante.medida === cuadro.medidaReferencia)?.precio
@@ -244,10 +245,17 @@ export class App implements OnInit, OnDestroy {
     }
   }
 
-  cambiarMedida(evento: Event): void {
-    const elemento = evento.target as HTMLSelectElement;
-    this.medidaSeleccionada.set(elemento.value);
+  seleccionarMedida(medida: string): void {
+    if (!this.cuadroSeleccionado().variantes.some((variante) => variante.medida === medida)) {
+      return;
+    }
+    this.medidaSeleccionada.set(medida);
     this.pedidoCopiado.set(false);
+  }
+
+  relacionMedida(medida: string): string {
+    const dimensiones = medida.match(/\d+/g);
+    return dimensiones?.length === 2 ? `${dimensiones[0]} / ${dimensiones[1]}` : '4 / 3';
   }
 
   cambiarCantidad(cambio: number): void {
@@ -256,7 +264,8 @@ export class App implements OnInit, OnDestroy {
   }
 
   formatearPrecio(precio: number): string {
-    return `Q${precio.toLocaleString('es-GT')}`;
+    const decimales = Number.isInteger(precio) ? 0 : 2;
+    return `Q${precio.toLocaleString('es-GT', { minimumFractionDigits: decimales, maximumFractionDigits: 2 })}`;
   }
 
   async copiarPedido(): Promise<void> {
@@ -266,7 +275,7 @@ export class App implements OnInit, OnDestroy {
       `Medidas: ${this.medidaSeleccionada()}\n` +
       `Cantidad: ${this.cantidad()}\n` +
       `Precio segun medidas: ${this.formatearPrecio(this.total())}\n` +
-      `Anticipo: 30% para agendar\n` +
+      `Anticipo del 30%: ${this.formatearPrecio(this.anticipo())}\n` +
       `Envío: gratis a toda Guatemala\n\n` +
       `Quisiera confirmar la disponibilidad, el anticipo y el tiempo de entrega.`;
 
