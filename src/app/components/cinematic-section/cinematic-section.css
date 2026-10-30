@@ -5,6 +5,12 @@
 
 .neo-cinematic {
   min-width: 0;
+  color: #18181b;
+  background: radial-gradient(ellipse at 50% 46%, rgba(139, 92, 246, 0.10), transparent 52%), #f8f6fc;
+}
+:host-context(.dark) .neo-cinematic {
+  color: #fff;
+  background: #08080e;
 }
 
 .neo-cinematic-grid {
@@ -17,11 +23,17 @@
 .neo-ambient-light {
   background: radial-gradient(
     ellipse at 50% 62%,
+    rgba(139, 92, 246, 0.20),
+    transparent 55%
+  );
+}
+:host-context(.dark) .neo-ambient-light {
+  background: radial-gradient(
+    ellipse at 50% 62%,
     rgba(139, 92, 246, 0.42),
     transparent 55%
   );
 }
-
 .neo-text-viewport {
   overflow: clip;
 }
@@ -52,15 +64,15 @@
 
   width: min(72%, 275px);
   aspect-ratio: 4 / 5;
-  border: 7px solid #1e1528;
+  border: 7px solid #e4dbf5;
   border-radius: 9px;
   background:
     linear-gradient(125deg, rgba(255, 255, 255, 0.13), transparent 38%),
     radial-gradient(circle at 75% 25%, rgba(168, 85, 247, 0.50), transparent 52%),
-    #090711;
+    #ffffff;
   box-shadow:
-    0 30px 75px rgba(0, 0, 0, 0.42),
-    0 0 65px rgba(168, 85, 247, 0.35);
+    0 24px 60px rgba(17, 24, 39, 0.12),
+    0 0 42px rgba(168, 85, 247, 0.18);
 
   /* El cursor controla el giro; GSAP anima solamente el contenedor exterior. */
   transform: rotateX(var(--giro-x)) rotateY(var(--giro-y));
@@ -113,3 +125,46 @@
     will-change: auto;
   }
 }
+
+/* Fotografia horizontal original: rotacion unicamente visual. */
+.neo-interactive-poster {
+  width: min(92%, 440px);
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  overflow: hidden;
+  container-type: size;
+}
+.neo-cinema-real-img {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 100cqh;
+  height: 100cqw;
+  max-width: none;
+  object-fit: contain;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+@media (max-width:639px) {
+  .neo-interactive-poster { width: min(92%, 340px); }
+}
+
+/* V6: el cuadro real ocupa el centro de la experiencia cinematografica. */
+.neo-motion-title { font-size: clamp(2.25rem, 6.3vw, 6.3rem); }
+.neo-moving-frame { width: min(100%, 780px); min-height: 350px; }
+.neo-interactive-poster {
+  width: min(96%, 740px);
+  aspect-ratio: 16 / 10;
+  border-width: 8px;
+  box-shadow: 0 24px 60px rgba(17,24,39,.14), 0 0 54px rgba(168,85,247,.18);
+}
+@media (max-width: 1023px) {
+  .neo-moving-frame { width: min(100%, 620px); min-height: 285px; }
+  .neo-interactive-poster { width: min(95%, 590px); }
+}
+@media (max-width: 639px) {
+  .neo-motion-title { font-size: clamp(2rem, 8.4vw, 3.2rem); }
+  .neo-moving-frame { width: 100%; min-height: 240px; }
+  .neo-interactive-poster { width: min(96%, 410px); border-width: 5px; }
+}
+
+
+:host-context(.dark) .neo-interactive-poster { border-color: #1e1528; background: linear-gradient(125deg, rgba(255, 255, 255, 0.13), transparent 38%), radial-gradient(circle at 75% 25%, rgba(168, 85, 247, 0.50), transparent 52%), #090711; box-shadow: 0 30px 75px rgba(0, 0, 0, 0.42), 0 0 65px rgba(168, 85, 247, 0.35); }

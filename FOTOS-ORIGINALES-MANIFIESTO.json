@@ -1,0 +1,52 @@
+[
+  {
+    "file": "bad-bunny.jpeg",
+    "bytes": 822526,
+    "sha256": "a645f525e6d32f03eb21edd871cdf3ceb20fae057396df1b234619067d97ace4"
+  },
+  {
+    "file": "goku-neon.jpeg",
+    "bytes": 858006,
+    "sha256": "b6a47b5512b1f53559c24f3421620778e09c361aec618152fc7ce0417111a662"
+  },
+  {
+    "file": "messi-barcelona.jpeg",
+    "bytes": 733588,
+    "sha256": "32a6d1395f4166b8848bf427d33cf4d8ae1ed2af7c6ed56aaacab28dd4c61065"
+  },
+  {
+    "file": "money-bart.jpeg",
+    "bytes": 1038415,
+    "sha256": "f64506752d0ef757a05886ff91998792072b5fd79a927dfd7791e101b7e908a4"
+  },
+  {
+    "file": "money-scrooge.jpeg",
+    "bytes": 970467,
+    "sha256": "82c780d4312b11448e2a338fa062f8c7f8a1e72eb38ba637b975dfe12c9fbbc0"
+  },
+  {
+    "file": "money-verde.jpeg",
+    "bytes": 644681,
+    "sha256": "a6645243c5cb7a23ee0137627f15087631fc4bb990578ad792b4fbb9be8b5b1f"
+  },
+  {
+    "file": "mustang-neon.jpeg",
+    "bytes": 630650,
+    "sha256": "59fc04eff562963d18982509fb3b0b1c0f398d68dc30a38c9d11d1f19c2ab96a"
+  },
+  {
+    "file": "porsche-gt3rs.jpeg",
+    "bytes": 616289,
+    "sha256": "1653ef47aebb73148595fb42a175a7a1d67681ffa656414f4bd4c80cfc4c1e84"
+  },
+  {
+    "file": "tony-montana-blanco.jpeg",
+    "bytes": 819795,
+    "sha256": "6552b5e80bdf0edfebd40e883c0860b03ecde1c6b474456f23a95ac7666c1b54"
+  },
+  {
+    "file": "tony-montana-clasico.jpeg",
+    "bytes": 1045481,
+    "sha256": "5d44774ed2c208b821d9df3b18745881ac5ae7b0bf8fbcc19e1945594218179b"
+  }
+]

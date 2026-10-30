@@ -44,7 +44,7 @@ export class CinematicSectionComponent {
     this.animaciones = gsap.matchMedia();
     this.animaciones.add(
       {
-        escritorio: '(min-width: 1024px)',
+        escritorio: '(min-width: 1024px) and (min-height: 760px)',
         tablet: '(min-width: 640px) and (max-width: 1023px)',
         movil: '(max-width: 639px)',
         reducido: '(prefers-reduced-motion: reduce)',
@@ -56,7 +56,7 @@ export class CinematicSectionComponent {
 
         const escritorio = Boolean(contexto.conditions?.['escritorio']);
         const movil = Boolean(contexto.conditions?.['movil']);
-        const distancia = escritorio ? 150 : movil ? 18 : 55;
+        const distancia = escritorio ? 130 : movil ? 16 : 48;
 
         const lineaTiempo = gsap.timeline({
           defaults: { ease: 'none' },
@@ -81,8 +81,8 @@ export class CinematicSectionComponent {
           { x: -distancia, duration: 1 }, 0);
 
         lineaTiempo.fromTo(marco,
-          { y: escritorio ? 65 : 25, rotation: -6, scale: 0.86 },
-          { y: escritorio ? -35 : -15, rotation: 4, scale: 1.04, duration: 1 }, 0);
+          { y: escritorio ? 48 : 20, rotation: -4, scale: 0.84 },
+          { y: escritorio ? -20 : -10, rotation: 2.5, scale: 1.025, duration: 1 }, 0);
 
         lineaTiempo.fromTo(iluminacion,
           { opacity: 0.2, scale: 0.8 },
